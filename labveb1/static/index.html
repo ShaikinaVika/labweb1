@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>First Web-programming Lab</title>
+    <link rel="stylesheet" href="style/dop.css">
+    <link rel="stylesheet" href="style/main.css">
+    <script defer src="index.js"></script>
+</head>
+<body>
+<table id="main-table">
+    <tr>
+        <td colspan="2">
+            <table id="header-table">
+                <tr>
+                    <td id="info">
+                        Shaikina Viktoria
+                        <br/>
+                        P3216
+                        <br/>
+                        <span>Var <span class="fire">468045</span></span>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td id="input-cell">
+            <table class="input-table">
+                <tr>
+                    <td colspan="2">
+                        <form action="/" method="GET" id="data-form">
+                            <table class="form-table">
+                                <tr>
+                                    <td><label for="x">Enter X:</label></td>
+                                    <td><input type="number" id="x" name="x" required></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9">
+                                        <fieldset id="ys">
+                                            <legend>Select Y:</legend>
+                                            <table>
+                                                <tr>
+                                                    <td> <label for="-4">-4</label>
+                                                        <input type="radio" id="-4" name="y" value="-4">
+                                                    </td>
+                                                    <td> <label for="-3">-3</label>
+                                                        <input type="radio" id="-3" name="y" value="-3">
+                                                    </td>
+                                                    <td> <label for="-2">-2</label>
+                                                        <input type="radio" id="-2" name="y" value="-2">
+                                                    </td>
+                                                    <td> <label for="-1">-1</label>
+                                                        <input type="radio" id="-1" name="y" value="-1">
+                                                    </td>
+                                                    <td> <label for="0">0</label>
+                                                        <input type="radio" id="0" name="y" value="0">
+                                                    </td>
+                                                    <td> <label for="1">1</label>
+                                                        <input type="radio" id="1" name="y" value="1">
+                                                    </td>
+                                                    <td> <label for="2">2</label>
+                                                        <input type="radio" id="2" name="y" value="2">
+                                                    </td>
+                                                    <td> <label for="3">3</label>
+                                                        <input type="radio" id="3" name="y" value="3">
+                                                    </td>
+                                                    <td> <label for="4">4</label>
+                                                        <input type="radio" id="4" name="y" value="4">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <fieldset id="rs">
+                                            <legend>Select R:</legend>
+                                            <table>
+                                                <tr>
+                                                    <td><input type="button" name="r" value="1.0"></td>
+                                                    <td><input type="button" name="r" value="1.5"></td>
+                                                    <td><input type="button" name="r" value="2.0"></td>
+                                                    <td><input type="button" name="r" value="2.5"></td>
+                                                    <td><input type="button" name="r" value="3.0"></td>
+                                                </tr>
+                                            </table>
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <button type="submit">Submit</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div id="error" hidden></div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td id="results-cell">
+            <table class="results-table">
+                <tr>
+                    <td>
+                        <canvas id="graph" width="300" height="300"></canvas>
+                    </td>
+                    <td>
+                        <table id="result-table">
+                            <tr>
+                                <th>x</th>
+                                <th>y</th>
+                                <th>r</th>
+                                <th>time</th>
+                                <th>execution time</th>
+                                <th>result</th>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
