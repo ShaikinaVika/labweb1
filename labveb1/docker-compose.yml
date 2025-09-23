@@ -1,5 +1,4 @@
 services:
-  # Наше приложение
   fcgi:
     build:
       context: .
@@ -7,7 +6,6 @@ services:
     networks:
       backend:
 
-  # Сам веб-сервер
   httpd:
     image: "httpd:2.4.62"
     ports:

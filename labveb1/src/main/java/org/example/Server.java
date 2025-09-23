@@ -23,12 +23,18 @@ public class Server {
                 Instant startTime = Instant.now();
                 boolean result = calculate(params.getX(), params.getY(), params.getR());
                 Instant endTime = Instant.now();
-                String response = RESPONSE.formatted("OK", params.getX(), params.getY(), params.getR(), LocalDateTime.now(),
-                        ChronoUnit.NANOS.between(startTime, endTime));
-                System.out.println(response);
+                if (result) {
+                    String response = RESPONSE.formatted("OK", params.getX(), params.getY(), params.getR(),
+                            Instant.now(), ChronoUnit.NANOS.between(startTime, endTime));
+                    System.out.println(response);
+                } else {
+                    String response = RESPONSE.formatted("NOT", params.getX(), params.getY(), params.getR(),
+                            Instant.now(), ChronoUnit.NANOS.between(startTime, endTime));
+                    System.out.println(response);
+                }
             } catch (ValidationException e) {
                 String response = RESPONSE.formatted("BAD REQUEST", 0, 0, 0,
-                        LocalDateTime.now(), 0);
+                        Instant.now(), 0);
                 System.out.println(response);
             }
         }

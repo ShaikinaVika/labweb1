@@ -95,9 +95,9 @@ document.getElementById("data-form").addEventListener("submit", async function (
 
     if (response.ok) {
         const result = await response.json();
-        results.time = new Date(result.now).toLocaleString();
-        results.execTime = `${result.time} ns`;
         results.result = result.result.toString();
+        results.time = `${result.time}`;
+        results.execTime = `${result.workTime} ns`;
     } else {
         results.time = "N/A";
         results.execTime = "N/A";
@@ -105,6 +105,8 @@ document.getElementById("data-form").addEventListener("submit", async function (
     }
 
     const prevResults = JSON.parse(localStorage.getItem("results") || "[]");
+    const updatedResults = [...prevResults, results];
+    const limitedResults = updatedResults.slice(-10);
     localStorage.setItem("results", JSON.stringify([...prevResults, results]));
 
     rowX.innerText = results.x.toString();
@@ -116,8 +118,9 @@ document.getElementById("data-form").addEventListener("submit", async function (
 });
 
 const prevResults = JSON.parse(localStorage.getItem("results") || "[]");
+const limitedResults = prevResults.slice(-10);
 
-prevResults.forEach(result => {
+limitedResults.forEach(result => {
     const table = document.getElementById("result-table");
 
     const newRow = table.insertRow(-1);
@@ -166,14 +169,14 @@ ctx.closePath();
 ctx.fill();
 
 ctx.beginPath();
-ctx.moveTo(centerX, 0);  // Y-axis
+ctx.moveTo(centerX, 0);
 ctx.lineTo(centerX, height);
-ctx.moveTo(0, centerY);  // X-axis
+ctx.moveTo(0, centerY);
 ctx.lineTo(width, centerY);
 ctx.strokeStyle = 'rgba(42, 42, 42, 1)';
 ctx.stroke();
 
-ctx.font = "12px sans-serif"; // Изменено на sans-serif
+ctx.font = "12px sans-serif";
 
 ctx.strokeText("0", centerX + 6, centerY - 6);
 ctx.strokeText("R/2", centerX + R / 2 - 6, centerY - 6);
