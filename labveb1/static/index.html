@@ -13,30 +13,26 @@
 <body>
 <table id="main-table">
     <tr>
-        <td colspan="2">
-            <table id="header-table">
-                <tr>
-                    <td id="info">
-                        Shaikina Viktoria
-                        <br/>
-                        P3216
-                        <br/>
-                        <span>Var <span class="fire">468045</span></span>
-                    </td>
-                </tr>
-            </table>
+        <td colspan="3">
+            <header>
+                Shaikina Viktoria
+                <br/>
+                P3216
+                <br/>
+                <span>Var <span class="fire">468045</span></span>
+            </header>
         </td>
     </tr>
     <tr>
         <td id="input-cell">
             <table class="input-table">
                 <tr>
-                    <td colspan="2">
+                    <td>
                         <form action="/" method="GET" id="data-form">
                             <table class="form-table">
                                 <tr>
                                     <td><label for="x">Enter X:</label></td>
-                                    <td><input type="number" step="any" id="x" name="x" required></td>
+                                    <td><input type="number" step="any" id="x" name="x"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="9">
@@ -108,26 +104,28 @@
                 </tr>
             </table>
         </td>
-        <td id="results-cell">
-            <table class="results-table">
-                <tr>
-                    <td>
-                        <canvas id="graph" width="300" height="300"></canvas>
-                    </td>
-                    <td>
-                        <table id="result-table">
-                            <tr>
-                                <th>x</th>
-                                <th>y</th>
-                                <th>r</th>
-                                <th>time</th>
-                                <th>execution time</th>
-                                <th>result</th>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
+        <td>
+            <canvas id="graph" width="300" height="300"></canvas>
+        </td>
+        <td class="scroll-table" id="results-cell">
+            <table>
+                <thead>
+                    <tr>
+                        <th>x</th>
+                        <th>y</th>
+                        <th>r</th>
+                        <th>time</th>
+                        <th>execution time</th>
+                        <th>result</th>
+                    </tr>
+                </thead>
             </table>
+            <main class="scroll-table-body">
+                <table id="result-table">
+                    <tbody>
+                    </tbody>
+                </table>
+            </main>
         </td>
     </tr>
 </table>

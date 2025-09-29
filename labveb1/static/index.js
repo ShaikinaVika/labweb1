@@ -1,9 +1,9 @@
 "use strict";
 
 const state = {
-    x: 0,
-    y: 0,
-    r: 1.0,
+    x: NaN,
+    y: NaN,
+    r: NaN,
 };
 
 const table = document.getElementById("result-table");
@@ -14,22 +14,21 @@ const possibleYs = new Set([-4, -3, -2, -1, 0, 1, 2, 3, 4]);
 const validateState = (state) => {
     if (isNaN(state.x) || state.x < -3 || state.x > 3) {
         error.hidden = false;
-        error.innerText = "x must be in range [-3, 3]";
+        error.innerText = "Error: x must be in range [-3, 3]";
         throw new Error("Invalid state");
     }
 
     if (isNaN(state.y) || !possibleYs.has(state.y)) {
         error.hidden = false;
-        error.innerText = `y must be in [${[...possibleYs].join(" ,")}]`;
+        error.innerText = `Error: y must be in [${[...possibleYs].join(" ,")}]`;
         throw new Error("Invalid state");
     }
 
     if (isNaN(state.r) || !possibleRs.has(state.r)) {
         error.hidden = false;
-        error.innerText = `r must be in [${[...possibleRs].join(" ,")}]`;
+        error.innerText = `Error: r must be in [${[...possibleRs].join(" ,")}]`;
         throw new Error("Invalid state");
     }
-
     error.hidden = true;
 }
 
@@ -44,7 +43,7 @@ Array.from(document.getElementById("rs").getElementsByTagName("input"))
             }
             selectedBtn = btn;
             state.r = parseFloat(ev.target.value);
-            selectedBtn.style.border = "#FF6961 1px solid";
+            selectedBtn.style.border = "#42aaff 1px solid";
         });
     });
 
@@ -57,7 +56,6 @@ Array.from(document.getElementById("ys").getElementsByTagName("input"))
             }
             selectedBtn = btn;
             state.y = parseInt(ev.target.value);
-            selectedBtn.style.border = "#FF6961 1px solid";
         });
     });
 
@@ -72,6 +70,7 @@ document.getElementById("data-form").addEventListener("submit", async function (
 
     const newRow = table.insertRow(-1);
 
+
     const rowX = newRow.insertCell(0);
     const rowY = newRow.insertCell(1);
     const rowR = newRow.insertCell(2);
@@ -81,7 +80,6 @@ document.getElementById("data-form").addEventListener("submit", async function (
 
     const params = new URLSearchParams(state);
 
-    //const response = await fetch("/calculate?" + params.toString());
     const response = await fetch("/fcgi-bin/labweb1.jar?" + params.toString());
 
     const results = {
@@ -105,8 +103,7 @@ document.getElementById("data-form").addEventListener("submit", async function (
     }
 
     const prevResults = JSON.parse(localStorage.getItem("results") || "[]");
-    const updatedResults = [...prevResults, results];
-    const limitedResults = updatedResults.slice(-10);
+
     localStorage.setItem("results", JSON.stringify([...prevResults, results]));
 
     rowX.innerText = results.x.toString();
@@ -118,9 +115,8 @@ document.getElementById("data-form").addEventListener("submit", async function (
 });
 
 const prevResults = JSON.parse(localStorage.getItem("results") || "[]");
-const limitedResults = prevResults.slice(-10);
 
-limitedResults.forEach(result => {
+prevResults.forEach(result => {
     const table = document.getElementById("result-table");
 
     const newRow = table.insertRow(-1);

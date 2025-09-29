@@ -3,6 +3,7 @@ package org.example;
 import com.fastcgi.FCGIInterface;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class Server {
@@ -15,6 +16,7 @@ public class Server {
 
     public static void main(String[] args) {
         var fcgi = new FCGIInterface();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         while (fcgi.FCGIaccept() >= 0) {
             try {
                 String queryParams = System.getProperties().getProperty("QUERY_STRING");
@@ -25,16 +27,16 @@ public class Server {
                 Instant endTime = Instant.now();
                 if (result) {
                     String response = RESPONSE.formatted("OK", params.getX(), params.getY(), params.getR(),
-                            Instant.now(), ChronoUnit.NANOS.between(startTime, endTime));
+                            LocalDateTime.now().format(formatter), ChronoUnit.NANOS.between(startTime, endTime));
                     System.out.println(response);
                 } else {
                     String response = RESPONSE.formatted("NOT", params.getX(), params.getY(), params.getR(),
-                            Instant.now(), ChronoUnit.NANOS.between(startTime, endTime));
+                            LocalDateTime.now().format(formatter), ChronoUnit.NANOS.between(startTime, endTime));
                     System.out.println(response);
                 }
             } catch (ValidationException e) {
                 String response = RESPONSE.formatted("BAD REQUEST", 0, 0, 0,
-                        Instant.now(), 0);
+                        LocalDateTime.now().format(formatter), 0);
                 System.out.println(response);
             }
         }
