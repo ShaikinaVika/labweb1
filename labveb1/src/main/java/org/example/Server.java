@@ -11,7 +11,7 @@ public class Server {
             Content-Type: application/json; charset=UTF-8
             
             
-            {"result":"%s","x":"%s","y":"%s","r":"%s","time":"%s","workTime":"%s","error":"all ok"}
+            {"result":"%s","x":"%s","y":"%s","r":"%s","time":"%s","workTime":"%s"}
             """;
 
     public static void main(String[] args) {

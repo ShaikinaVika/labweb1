@@ -49,12 +49,7 @@ Array.from(document.getElementById("rs").getElementsByTagName("input"))
 
 Array.from(document.getElementById("ys").getElementsByTagName("input"))
     .forEach(btn => {
-        btn.style.border = "";
         btn.addEventListener("click", function (ev) {
-            if (selectedBtn !== null) {
-                selectedBtn.style.border = "";
-            }
-            selectedBtn = btn;
             state.y = parseInt(ev.target.value);
         });
     });

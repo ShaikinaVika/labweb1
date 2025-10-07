@@ -98,9 +98,10 @@ input[type="radio"] {
 	border-bottom: 1px solid #444;
 }
 .scroll-table table {
-	width:740px;
+	width:100%;
 	table-layout: fixed;
 	border: none;
+	min-width: 600px;
 }
 .scroll-table thead th {
 	font-weight: bold;
@@ -122,7 +123,6 @@ input[type="radio"] {
 	background: #ffc1c1;
 }
 
-/* Стили для скролла */
 ::-webkit-scrollbar {
 	width: 6px;
 }
